@@ -14,9 +14,7 @@ class AbstractSeeder {
   constructor({ table, truncate = true, dependencies = [] }) {
     // thx https://www.codeheroes.fr/2017/11/08/js-classes-abstraites-et-interfaces/
     if (this.constructor === AbstractSeeder) {
-      throw new TypeError(
-        "Abstract class 'AbstractSeed' cannot be instantiated directly"
-      );
+      throw new TypeError("Abstract class 'AbstractSeed' cannot be instantiated directly");
     }
 
     this.table = table;
@@ -37,9 +35,7 @@ class AbstractSeeder {
 
     // Prepare the SQL statement: "insert into <table>(<fields>) values (<placeholders>)"
     const fields = Object.keys(values).join(",");
-    const placeholders = new Array(Object.keys(values).length)
-      .fill("?")
-      .join(",");
+    const placeholders = new Array(Object.keys(values).length).fill("?").join(",");
 
     const sql = `insert into ${this.table}(${fields}) values (${placeholders})`;
 
